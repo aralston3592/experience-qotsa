@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+{% extends 'base.html'%}
+{% block content %}
+
+    <h2>{{ page_title }}</h2>
+    <p>
+        Queens of the Stone Age (commonly abbreviated QOTSA) is an American rock band formed in 1996 in Palm Desert,
+        California. The band was founded by vocalist and guitarist Josh Homme, who has been the only constant member
+        throughout multiple line-up changes. The current line-up consists of Homme alongside Troy Van Leeuwen (guitar,
+        lap steel, keyboard, percussion, backing vocals), Michael Shuman (bass guitar, keyboard, backing vocals),
+        Dean Fertita (keyboards, guitar, percussion, backing vocals), and Jon Theodore (drums, percussion).
+        Formed after the dissolution of Homme's previous band Kyuss, Queens of the Stone Age developed a style
+        of riff-oriented, heavy rock music. Their sound has since evolved to incorporate a variety of different
+        styles and influences, most notably including collaborations with Screaming Trees frontman Mark Lanegan and
+        Foo Fighters frontman and former Nirvana drummer Dave Grohl.
+    </p>
+
+    {% for member in company %}
+
+
+    <div class="row featurette">
+
+        {% if loop.index % 2 != 0 %}
+
+        <div class="col-md-7">
+            <h3><a href="/about/{{ member.url }}">{{ loop.index }}. {{ member.name }}</a></h3>
+            <p>{{ member.description }}</p>
+        </div>
+        <div class="col-md-5">
+            <img class="featurette-image img-responsive" src="{{ member.image_source }}">
+        </div>
+
+        {% else %}
+
+        <div class="col-md-5">
+            <img class="featurette-image img-responsive" src="{{ member.image_source }}">
+        </div>
+        <div class="col-md-7">
+            <h3><a href="/about/{{ member.url }}">{{ loop.index }}. {{ member.name }}</a></h3>
+            <p>{{ member.description }}</p>
+        </div>
+
+        {% endif %}
+
+    </div>
+
+    {% if loop.index !=5 %}
+
+    <hr class="featurette-divider">
+
+    {% endif %}
+    
+    {% endfor %}
+
+{% endblock %}
